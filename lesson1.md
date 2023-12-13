@@ -40,31 +40,19 @@ apt install python3-rosdep-modules python3-rosinstall-generator python3-vcstools
 #include <ros/ros.h>
 
 int main(int argc, char** argv)
-
 {
+    // Initialize a ROS node
+    ros::init(argc, argv, "my_first_ros_node");
+    // Create a ROS NodeHandle object
+    ros::NodeHandle n;
+    // wait until ROS is OK
+    while (ros::ok()) {
+        // Handle ROS communication events
+        ros::spinOnce();
+        ROS_INFO_ONCE( "My node is running" );
+        }
 
-// Initialize a ROS node
-
-ros::init(argc, argv, "my_first_ros_node");
-
-// Create a ROS NodeHandle object
-
-ros::NodeHandle n;
-
-// wait until ROS is OK
-
-while (ros::ok()) {
-
-// Handle ROS communication events
-
-ros::spinOnce();
-
-ROS_INFO_ONCE( "My node is running" );
-
-}
-
-return 0;
-
+    return 0;
 }
 ```
 
