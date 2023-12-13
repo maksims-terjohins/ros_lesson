@@ -156,76 +156,10 @@ catkin_make
 
 Open a new terminal for the docker container:
 
-```bash
-docker exec -it ros1_instance /bin/bash
-```
+![Alt text](6.png)
 
-```bash
-cd /ros_ws
-```
+![Alt text](7.png)
 
-```bash
-source ./devel/setup.bash
-```
-
-Run ROS CORE:
-```bash
-roscore
-```
-
-Return back to the previous terminal:
-
-```bash
-rosrun my_first_pkg my_first_pkg_node
-```
-
-Create the third terminal
-
-```bash
-docker exec -it ros1_instance /bin/bash
-```
-
-```bash
-cd /ros_ws
-```
-
-```bash
-source ./devel/setup.bash
-```
-
-
-Check the our node is running:
-
-```bash
-rosnode list
-```
-
-```bash
-rosnode info /my_first_ros_node
-```
-
-### Subscribing ROS topics (messages)
-
-
-Install dependences
-```bash
-apt install ros-noetic-turtlesim
-```
-
-Run TurtleSim Teleop node:
-```bash
-rosrun turtlesim turtle_teleop_key
-```
-
-In the third terminal list available topics:
-```bash
-rostopic list
-```
-
-Get the topic content:
-```bash
-rostopic echo /turtle1/cmd_vel
-```
 
 Return to the prev.terminal and play with keyboard arrows…
 
