@@ -36,60 +36,9 @@ Pievienoties konteinerim
 
 
 ```bash  
-apt update
-```
-
-```bash  
 apt install python3-rosdep-modules python3-rosinstall-generator python3-vcstools python3-vcstool build-essential -y
 ```
-
-```bash 
-catkin_make
-```
-
-```bash 
-source ./devel/setup.bash
-```
-
-Izveidot savu pakotni:
-
-```bash 
-cd ./src
-```
-
-```bash 
-catkin_create_pkg my_first_pkg
-```
-
-```bash 
-cd ..
-```
-
-```bash 
-source ./devel/setup.bash
-```
-
-```bash 
-catkin_make
-```
-
-Uzrakstīsim pirmo programmu:
-
-```bash 
-cd ./src
-```
-
-```bash 
-cd ./my_first_pkg
-```
-
-```bash 
-mkdir src
-```
-
-```bash 
-touch main.cpp
-```
+![Alt text](2.png)
 
 Write your first code for ROS EDIT main.cpp by using your editor:
 
