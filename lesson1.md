@@ -4,19 +4,11 @@
 1. Docker Desktop instalācija. 
 2. Visual Studio Code instalācija, vai Notepad++.
 
-### ROS1 docker image konteinera palaišana ar nosacījumu kā datora lokālā direktorija ir koplietota ar konteinera workspace/src mapi.
+### ROS1 docker image konteinera palaišana 
 
-```bash 
-docker pull ros:noetic-ros-core-buster
-```
+Palaišana ar nosacījumu kā datora lokālā direktorija ir koplietota ar konteinera workspace/src mapi.
 
-```bash 
-mkdir your_path/src
-```
-
-```bash 
-cd your_path/src
-```
+![Alt text](3.png)
 
 Run container (Linux/Mac):
 
