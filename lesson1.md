@@ -284,7 +284,8 @@ rosrun turtlesim turtle_teleop_key
 rosrun my_first_pkg my_first_pkg_node /cmd:=/turtle1/cmd_vel
 ```
 
-! /cmd:=/turtle1/cmd_vel ir topic remap pieeja, kas ļauj node ietvaros no roscore redzēt topic /turtle1/cmd_vel ar citu iekšējo nosaukumu /cmd.
+Note:
+`cmd:=/turtle1/cmd_vel ir topic remap pieeja, kas ļauj node ietvaros no roscore redzēt topic /turtle1/cmd_vel ar citu iekšējo nosaukumu /cmd.`
 
 
 
@@ -294,100 +295,60 @@ Veidojam otro mūsu pakotni ar nosaukumu “my_second_package”, līdzīgi kā 
 
 Jaunajā pakotnē izveidojam main.cpp failu pakotnes src mapē.
 
-Full source of the main.cpp for the second package.
-```
+Full source of the main.cpp for the second package:
+```cpp
 #include <ros/ros.h>
-
 #include <geometry_msgs/Twist.h>
 
 class My_publisher
-
 {
-
-public:
-
-My_publisher(ros::NodeHandle* nh) { // the class's constructor
-
-nh_ = nh;
-
-pub_ = nh_->advertise<geometry_msgs::Twist>("/cmd", 100);
-
-ROS_INFO( "My_publisher is ready" );
-
+    public:
+        My_publisher(ros::NodeHandle* nh) { // the class's constructor
+        nh_ = nh;
+        pub_ = nh_->advertise<geometry_msgs::Twist>("/cmd", 100);
+        ROS_INFO( "My_publisher is ready" );
 }
 
 void run() {
-
 // create a new message
-
 geometry_msgs::Twist cmd_msg;
-
 // provide values
-
 cmd_msg.linear.x = 0.0;
-
 cmd_msg.linear.y = 1.0;
-
 cmd_msg.linear.z = 0.0;
-
 cmd_msg.angular.x = 0.0;
-
 cmd_msg.angular.y = -2.0;
-
 cmd_msg.angular.z = 0.0;
 
 // publish the message
-
 pub_.publish(cmd_msg);
-
 }
 
 private:
-
-ros::Publisher pub_;
-
-ros::NodeHandle* nh_;
-
+    ros::Publisher pub_;
+    ros::NodeHandle* nh_;
 };
 
 int main(int argc, char** argv)
-
 {
+    // Initialize a ROS node
+    ros::init(argc, argv, "my_first_ros_node");
+    // Create a ROS NodeHandle object
+    ros::NodeHandle n;
+    // Create our class's instance
+    My_publisher cmd_topic_publisher(&n);
+    // use ROS time to publish messages with a frequency, for example 2 Hz
+    ros::Rate r(2);
+    // wait until ROS is OK
+    while (ros::ok()) {
+        // Handle ROS communication events
+        ros::spinOnce();
+        r.sleep(); // make a delay accordingly to the frequency
+        cmd_topic_publisher.run();
+        ROS_INFO_ONCE( "My node is running" );
+        }
 
-// Initialize a ROS node
-
-ros::init(argc, argv, "my_first_ros_node");
-
-// Create a ROS NodeHandle object
-
-ros::NodeHandle n;
-
-// Create our class's instance
-
-My_publisher cmd_topic_publisher(&n);
-
-// use ROS time to publish messages with a frequency, for example 2 Hz
-
-ros::Rate r(2);
-
-// wait until ROS is OK
-
-while (ros::ok()) {
-
-// Handle ROS communication events
-
-ros::spinOnce();
-
-r.sleep(); // make a delay accordingly to the frequency
-
-cmd_topic_publisher.run();
-
-ROS_INFO_ONCE( "My node is running" );
-
-}
-
-return 0;
-
+    return 0;
 }
 ```
 
@@ -430,7 +391,7 @@ touch ./run_all.launch
 ```
 
 Aizpildīt ar šādu saturu:
-```
+```xml
 <launch>
 
 <!-- Run the first package -->
