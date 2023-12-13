@@ -6,17 +6,21 @@ ROS1 docker image konteinera palaišana ar nosacījumu kā datora lokālā direk
 
 ```bash 
 docker pull ros:noetic-ros-core-buster
+```
 
 ```bash 
 mkdir your_path/src
+```
 
 ```bash 
 cd your_path/src
+```
 
 Run container (Linux/Mac):
 
 ```bash 
 docker run -d -it --name ros1_instance --mount type=bind,source="$(pwd)",target=/ros_ws/src ros:noetic-ros-core-buster /bin/bash
+```
 
 or
 
@@ -28,21 +32,8 @@ docker run -d -it --name ros1_instance --mount type=bind,source="${pwd}",target=
 
 Pievienoties konteinerim
 
-```bash 
-docker exec -it ros1_instance /bin/bash
-```
+![Alt text](1.png)
 
-```bash 
-cd /ros_ws/src
-```
-
-```bash 
-source /opt/ros/noetic/setup.bash
-```
-
-```bash 
-cd ..
-```
 
 ```bash  
 apt update
